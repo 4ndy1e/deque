@@ -27,6 +27,7 @@ char* removeHead(SList* list) {
   // store data of current head and remove
   struct node* currentHead = list->head;
   list->head = list->head->next;
+  char* data = currentHead->data;
 
   // free memory of removed head
   free(currentHead);
@@ -36,7 +37,7 @@ char* removeHead(SList* list) {
     list->tail = NULL;
   }
 
-  return currentHead->data;
+  return data;
 }
 
 void insertTail(SList* list, char* data) {
@@ -66,13 +67,14 @@ char* removeTail(SList* list) {
 
   // store old tail to return later
   struct node* currentTail = list->tail;
+  char* data = currentTail->data;
 
   // check if list only had one node
   if(list->head == list->tail) {
     list->head = NULL;
     list->tail = NULL;
     free(currentTail);
-    return currentTail->data;
+    return data;
   }
 
   // find the second to last node
@@ -86,5 +88,5 @@ char* removeTail(SList* list) {
   list->tail = currentNode;
   free(currentTail);
 
-  return currentTail->data;
+  return data;
 }

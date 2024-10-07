@@ -13,6 +13,7 @@ struct singlyLinkedList {
 
 typedef struct singlyLinkedList SList;
 typedef struct singlyLinkedList Deque;
+typedef enum { false, true } Bool;
 
 void insertHead(SList* list, char* data);
 char* removeHead(SList* list);

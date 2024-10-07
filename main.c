@@ -21,33 +21,50 @@ char* pop_front(Deque* q) {
 int main() {
   Deque queue = {NULL, NULL};
 
-  push_front(&queue, "Andy");
-  push_front(&queue, "Andy");
-  push_front(&queue, "Kelly");
+  // open file and add names to deque
+  char filename[] = "names.txt";
+  FILE* fp = NULL;
+  fp = fopen(filename, "r");
+  Bool done = false;
 
-  // print list
-  struct node* tmp = queue.head;
-
-  while(tmp != NULL) {
-    printf("%s->", tmp->data);
-    tmp = tmp->next;
+  if (fp == NULL) {
+    fprintf(stderr, "Cannot open names.txt\n");
+    exit(1);
   }
-  printf("NULL\n");
+
+  while(!done) {
+    char* name = malloc(20);
+    if (fscanf(fp, "%s", name) == 1) {
+      push_back(&queue, name);
+    }
+    else {
+      done = true;
+    }
+  }
+
+  // start of program
+  printf("To scroll throughg the names type\n");
+  printf("f: forwards, b:backwards, q: quit\n");
+
+  char choice;
+
+  while(choice != 'q') {
+    scanf("%c", &choice);
+
+    if(choice == 'f') {
+      printf("%s\n", queue.head->data);
+      push_back(&queue, pop_front(&queue));
+    }
+
+    if(choice == 'b') {
+      printf("%s\n", queue.tail->data);
+      push_front(&queue, pop_back(&queue));
+    }
+  }
+
+  printf("Bye !");
 
   return 0;
 }
 
-// to run file
-// gcc main.c slist.c -o main
-// ./main
-
-// read names from a text file and push names onto the back of a deque
-
-// 'f' to move forward
-// 'b' to move backwards
-// 'q' to quit
-
-// 'f' - display the name currently at front of queue by popping it and pushing it on the back of queue
-
-// 'b' - similiar but in other direction
 
