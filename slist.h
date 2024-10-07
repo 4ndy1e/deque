@@ -8,7 +8,7 @@ struct node {
   struct node* next;
 };
 
-struct singlylinkedList {
+struct singlyLinkedList {
   struct node* head;
   struct node* tail;
 };
