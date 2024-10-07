@@ -1,19 +1,18 @@
-#ifndef slist_h
-#define slist_h
+#ifndef SLIST_H
+#define SLIST_H
 
-#include <stdio.h>
-
-struct node {
-  int data;
-  struct node* next;
-};
+typedef struct node {
+    char* data;
+    struct node* next;
+} Node;
 
 struct singlyLinkedList {
-  struct node* head;
-  struct node* tail;
+    Node* head;
+    Node* tail;
 };
 
 typedef struct singlyLinkedList SList;
+typedef struct singlyLinkedList Deque;
 
 void insertHead(SList* list, char* data);
 char* removeHead(SList* list);

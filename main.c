@@ -2,34 +2,31 @@
 #include <stdlib.h>
 #include "slist.h"
 
-// struct Deque {
+void push_back(Deque* q, char* data) {
+  insertTail(q, data);
+}
 
-// }
+void push_front(Deque* q, char* data) {
+  insertHead(q, data);
+}
 
-// void push_back(Deque* q, char* data) {
-  
-// }
+char* pop_back(Deque* q) {
+  return removeTail(q);
+}
 
-// void push_front(Deque* q, char* data) {
-  
-// }
-
-// char* pop_back(Deque* q) {
-  
-// }
-
-// char* pop_front(Deque* q) {
-  
-// }
+char* pop_front(Deque* q) {
+  return removeHead(q);
+}
 
 int main() {
-  SList list = {NULL, NULL};
+  Deque queue = {NULL, NULL};
 
-  insertHead( &list, "Andy");
-  insertHead( &list, "Kelly");
+  push_front(&queue, "Andy");
+  push_front(&queue, "Andy");
+  push_front(&queue, "Kelly");
 
   // print list
-  struct node* tmp = list.head;
+  struct node* tmp = queue.head;
 
   while(tmp != NULL) {
     printf("%s->", tmp->data);
@@ -37,9 +34,12 @@ int main() {
   }
   printf("NULL\n");
 
-
   return 0;
 }
+
+// to run file
+// gcc main.c slist.c -o main
+// ./main
 
 // read names from a text file and push names onto the back of a deque
 
